@@ -15,8 +15,8 @@ S = 225;                             % ft^2
 V = 418;                             % ft/s
 
 % Drag Polar Parameters
-C_D_o_23018 = 0.007;                 % Parasatic Drag for NACA 23018
-C_D_o_4418 = 0.006;                  % Parasatic Drag for NACA 4418
+C_D_o_23018 = 0.0314;                 % Parasatic Drag for NACA 23018
+C_D_o_4418 = 0.0293;                  % Parasatic Drag for NACA 4418
 e = 0.8;                             % Oswald Efficiency
 b = 44;                              % Span 
 c = 5;                               % Chord
@@ -46,10 +46,74 @@ E_MWTOW_23018 = C_L_MWTOW / C_D_MWTOW_23018;
 C_D_MWTOW_4418= C_D_o_4418 + k * C_L_MWTOW^2;  
 E_MWTOW_4418 = C_L_MWTOW / C_D_MWTOW_4418;
 
-% Effeciency Plot
-subplot(1, 3, 1)
+% Coefficient of Lift Plot
+t = tiledlayout(2, 3);
 set(gcf, 'Color', [1 1 1])
 
+nexttile
+plot(W,C_L,LineWidth=2.0)
+title("Coefficient of Lift vs Weight",'Color','k')
+xlabel("Weight (lbs)",'Color','k')
+ylabel("Coefficient of Lift",'Color','k')
+        
+hold on
+plot(MTOW,C_L_MTOW, "X", 'MarkerSize', 20, LineWidth=2.0)
+plot(MWTOW,C_L_MWTOW,"X",'MarkerSize', 20, LineWidth=2.0)
+
+ax2 = gca; 
+ax2.XAxis(1).Color = 'k'; 
+ax2.YAxis(1).Color = 'k'; 
+legend("CL Curve","MTOW","MWTOW")
+
+% Coefficient of Drag Plot
+nexttile
+plot(W,C_D_23018,LineWidth=2.0)
+title("Coefficient of Drag vs Weight",'Color','k')
+xlabel("Weight (lbs)",'Color','k')
+ylabel("Coefficient of Drag",'Color','k')
+
+hold on
+plot(W,C_D_4418,LineWidth=2.0)
+
+plot(MTOW,C_D_MTOW_23018, "X", 'MarkerSize', 20, LineWidth=2.0)
+plot(MWTOW,C_D_MWTOW_23018,"X",'MarkerSize', 20, LineWidth=2.0)
+
+plot(MTOW,C_D_MTOW_4418, "X", 'MarkerSize', 20, LineWidth=2.0)
+plot(MWTOW,C_D_MWTOW_4418,"X",'MarkerSize', 20, LineWidth=2.0)
+
+ax3 = gca; 
+ax3.XAxis(1).Color = 'k'; 
+ax3.YAxis(1).Color = 'k'; 
+legend("23018 CD Curve","4418 CD Curve","23018 MTOW","23018 MWTOW", ...
+    "4418 MTOW","4418 MWTOW")
+
+% Steady Flight Thrust Requirement using the Drag Polar
+T_23018 = C_D_o_23018 .* 0.5 * rho * V^2 * S + ((2 * k * S) / (rho * V^2)) .* (W ./ S).^2;
+T_4418 = C_D_o_4418 .* 0.5 * rho * V^2 * S + ((2 * k * S) / (rho * V^2)) .* (W ./ S).^2; 
+
+nexttile
+plot(W,T_23018, LineWidth=2.0)
+
+hold on
+plot(W,T_4418, LineWidth=2.0)
+
+plot(MTOW,T_23018(MTOW), "X", 'MarkerSize', 20, LineWidth=2.0)
+plot(MWTOW,T_23018(MWTOW), "X", 'MarkerSize', 20, LineWidth=2.0)
+plot(MTOW,T_4418(MTOW), "X", 'MarkerSize', 20, LineWidth=2.0)
+plot(MWTOW,T_4418(MWTOW), "X", 'MarkerSize', 20, LineWidth=2.0)
+
+ax4 = gca; 
+ax4.XAxis(1).Color = 'k'; 
+ax4.YAxis(1).Color = 'k'; 
+xlim(ax4,[5000 15000])
+
+title("Thrust Requirement vs Weight",'Color','k')
+xlabel("Weight (lbs)",'Color','k')
+ylabel("Thrust (lbs)",'Color','k')
+legend("NACA 23018", "NACA 4418","23018 MTOW","23018 MWTOW","4418 MTOW","4418 MWTOW")
+
+% Effeciency Plot
+nexttile([1 3])
 plot(W,E_23018,LineWidth=2.0)
 title("Efficiency vs Weight",'Color','k')
 xlabel("Weight (lbs)",'Color','k')
@@ -72,67 +136,3 @@ ax1.YAxis(1).Color = 'k';
 legend("23018 E Curve","4418 E Curve", ...
     "23018 MTOW","23018 MWTOW","23018 Maximum Effeciency", ...
     "4418 MTOW","4418 MWTOW","4418 Maximum Effeciency")
-
-% Coefficient of Lift Plot
-subplot(1, 3, 2)
-plot(W,C_L,LineWidth=2.0)
-title("Coefficient of Lift vs Weight",'Color','k')
-xlabel("Weight (lbs)",'Color','k')
-ylabel("Coefficient of Lift",'Color','k')
-        
-hold on
-plot(MTOW,C_L_MTOW, "X", 'MarkerSize', 20, LineWidth=2.0)
-plot(MWTOW,C_L_MWTOW,"X",'MarkerSize', 20, LineWidth=2.0)
-
-ax2 = gca; 
-ax2.XAxis(1).Color = 'k'; 
-ax2.YAxis(1).Color = 'k'; 
-legend("CL Curve","MTOW","MWTOW")
-
-% Coefficient of Drag Plot
-subplot(1, 3, 3)
-plot(W,C_D_23018,LineWidth=2.0)
-title("Coefficient of Drag vs Weight",'Color','k')
-xlabel("Weight (lbs)",'Color','k')
-ylabel("Coefficient of Drag",'Color','k')
-
-hold on
-plot(W,C_D_4418,LineWidth=2.0)
-
-plot(MTOW,C_D_MTOW_23018, "X", 'MarkerSize', 20, LineWidth=2.0)
-plot(MWTOW,C_D_MWTOW_23018,"X",'MarkerSize', 20, LineWidth=2.0)
-
-plot(MTOW,C_D_MTOW_4418, "X", 'MarkerSize', 20, LineWidth=2.0)
-plot(MWTOW,C_D_MWTOW_4418,"X",'MarkerSize', 20, LineWidth=2.0)
-
-ax3 = gca; 
-ax3.XAxis(1).Color = 'k'; 
-ax3.YAxis(1).Color = 'k'; 
-legend("23018 CD Curve","4418 CD Curve","23018 MTOW","23018 MWTOW", ...
-    "4418 MTOW","4418 MWTOW")
-
-%% Steady Flight Thrust Requirement using the Drag Polar
-T_23018 = C_D_o_23018 .* 0.5 * rho * V^2 * S + ((2 * k * S) / (rho * V^2)) .* (W ./ S).^2;
-T_4418 = C_D_o_4418 .* 0.5 * rho * V^2 * S + ((2 * k * S) / (rho * V^2)) .* (W ./ S).^2; 
-
-set(gcf, 'Color', [1 1 1])
-
-plot(W,T_23018, LineWidth=2.0)
-
-hold on
-plot(W,T_4418, LineWidth=2.0)
-
-plot(MTOW,T_23018(MTOW), "X", 'MarkerSize', 20, LineWidth=2.0)
-plot(MWTOW,T_23018(MWTOW), "X", 'MarkerSize', 20, LineWidth=2.0)
-plot(MTOW,T_4418(MTOW), "X", 'MarkerSize', 20, LineWidth=2.0)
-plot(MWTOW,T_4418(MWTOW), "X", 'MarkerSize', 20, LineWidth=2.0)
-
-ax4 = gca; 
-ax4.XAxis(1).Color = 'k'; 
-ax4.YAxis(1).Color = 'k'; 
-xlim(ax4,[5000 15000])
-
-title("Thrust Requirement vs Weight",'Color','k')
-xlabel("Weight (lbs)",'Color','k')
-ylabel("Thrust (lbs)",'Color','k')
-legend("NACA 23018", "NACA 4418","23018 MTOW","23018 MWTOW","4418 MTOW","4418 MWTOW")
