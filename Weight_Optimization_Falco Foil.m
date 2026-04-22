@@ -30,8 +30,8 @@ C_D_23018 = C_D_o_23018 + k * C_L.^2;  % Coefficient of Drag for NACA 23018
 C_D_4418 = C_D_o_4418 + k * C_L.^2;    % Coefficient of Drag for NACA 4418
 E_23018 = C_L ./ C_D_23018;            % Effeciency for NACA 23018
 E_4418 = C_L ./ C_D_4418;              % Effeciency for NACA 4418
-[maxE_23018,index23018] = max(E);      % Max Effeciency for NACA 23018
-[maxE_4418,index4418] = max(E);        % Max Effeciency for NACA 23018
+[maxE_23018,index23018] = max(E_23018);      % Max Effeciency for NACA 23018
+[maxE_4418,index4418] = max(E_4418);        % Max Effeciency for NACA 23018
 
 % Effeciency Calculation for MTOW and MWTOW Points on Plot
 C_L_MTOW = (2 * MTOW) / (rho * V^2 * S); 
@@ -71,7 +71,7 @@ ax1.XAxis(1).Color = 'k';
 ax1.YAxis(1).Color = 'k'; 
 legend("23018 E Curve","4418 E Curve", ...
     "23018 MTOW","23018 MWTOW","23018 Maximum Effeciency", ...
-    "4418 MTOW","4418 MWTOW","23018 Maximum Effeciency")
+    "4418 MTOW","4418 MWTOW","4418 Maximum Effeciency")
 
 % Coefficient of Lift Plot
 subplot(1, 3, 2)
@@ -110,3 +110,29 @@ ax3.XAxis(1).Color = 'k';
 ax3.YAxis(1).Color = 'k'; 
 legend("23018 CD Curve","4418 CD Curve","23018 MTOW","23018 MWTOW", ...
     "4418 MTOW","4418 MWTOW")
+
+%% Steady Flight Thrust Requirement using the Drag Polar
+T_23018 = C_D_o_23018 .* 0.5 * rho * V^2 * S + ((2 * k * S) / (rho * V^2)) .* (W ./ S).^2;
+T_4418 = C_D_o_4418 .* 0.5 * rho * V^2 * S + ((2 * k * S) / (rho * V^2)) .* (W ./ S).^2; 
+
+set(gcf, 'Color', [1 1 1])
+
+plot(W,T_23018, LineWidth=2.0)
+
+hold on
+plot(W,T_4418, LineWidth=2.0)
+
+plot(MTOW,T_23018(MTOW), "X", 'MarkerSize', 20, LineWidth=2.0)
+plot(MWTOW,T_23018(MWTOW), "X", 'MarkerSize', 20, LineWidth=2.0)
+plot(MTOW,T_4418(MTOW), "X", 'MarkerSize', 20, LineWidth=2.0)
+plot(MWTOW,T_4418(MWTOW), "X", 'MarkerSize', 20, LineWidth=2.0)
+
+ax4 = gca; 
+ax4.XAxis(1).Color = 'k'; 
+ax4.YAxis(1).Color = 'k'; 
+xlim(ax4,[5000 15000])
+
+title("Thrust Requirement vs Weight",'Color','k')
+xlabel("Weight (lbs)",'Color','k')
+ylabel("Thrust (lbs)",'Color','k')
+legend("NACA 23018", "NACA 4418","23018 MTOW","23018 MWTOW","4418 MTOW","4418 MWTOW")
