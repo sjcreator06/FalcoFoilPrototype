@@ -75,9 +75,9 @@ hold on
 plot(MTOW,C_L_MTOW, "X", 'MarkerSize', 20, LineWidth=2.0)
 plot(MWTOW,C_L_MWTOW,"X",'MarkerSize', 20, LineWidth=2.0)
 
-ax2 = gca; 
-ax2.XAxis(1).Color = 'k'; 
-ax2.YAxis(1).Color = 'k'; 
+ax1 = gca; 
+ax1.XAxis(1).Color = 'k'; 
+ax1.YAxis(1).Color = 'k'; 
 legend("CL Curve","MTOW","MWTOW")
 
 % Coefficient of Drag Plot
@@ -96,9 +96,9 @@ plot(MWTOW,C_D_MWTOW_23018,"X",'MarkerSize', 20, LineWidth=2.0)
 plot(MTOW,C_D_MTOW_4418, "X", 'MarkerSize', 20, LineWidth=2.0)
 plot(MWTOW,C_D_MWTOW_4418,"X",'MarkerSize', 20, LineWidth=2.0)
 
-ax3 = gca; 
-ax3.XAxis(1).Color = 'k'; 
-ax3.YAxis(1).Color = 'k'; 
+ax2 = gca; 
+ax2.XAxis(1).Color = 'k'; 
+ax2.YAxis(1).Color = 'k'; 
 legend("23018 CD Curve","4418 CD Curve","23018 MTOW","23018 MWTOW", ...
     "4418 MTOW","4418 MWTOW")
 
@@ -114,10 +114,10 @@ plot(MWTOW,T_23018(MWTOW), "X", 'MarkerSize', 20, LineWidth=2.0)
 plot(MTOW,T_4418(MTOW), "X", 'MarkerSize', 20, LineWidth=2.0)
 plot(MWTOW,T_4418(MWTOW), "X", 'MarkerSize', 20, LineWidth=2.0)
 
-ax4 = gca; 
-ax4.XAxis(1).Color = 'k'; 
-ax4.YAxis(1).Color = 'k'; 
-xlim(ax4,[5000 15000])
+ax3 = gca; 
+ax3.XAxis(1).Color = 'k'; 
+ax3.YAxis(1).Color = 'k'; 
+xlim(ax3,[5000 15000])
 
 title("Thrust Requirement vs Weight",'Color','k')
 xlabel("Weight (lbs)",'Color','k')
@@ -142,9 +142,9 @@ plot(MTOW,E_MTOW_4418, "X", 'MarkerSize', 20, LineWidth=2.0)
 plot(MWTOW,E_MWTOW_4418,"X",'MarkerSize', 20, LineWidth=2.0)
 plot(W(index4418),maxE_4418,"X",'MarkerSize', 20, LineWidth=2.0)
 
-ax1 = gca; 
-ax1.XAxis(1).Color = 'k'; 
-ax1.YAxis(1).Color = 'k'; 
+ax4 = gca; 
+ax4.XAxis(1).Color = 'k'; 
+ax4.YAxis(1).Color = 'k'; 
 legend("23018 E Curve","4418 E Curve", ...
     "23018 MTOW","23018 MWTOW","23018 Maximum Effeciency", ...
     "4418 MTOW","4418 MWTOW","4418 Maximum Effeciency")
