@@ -8,20 +8,31 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Wing Parameters
-MTOW = 8600;                         % Maximum Takeoff Weight (MTOW)
-MWTOW = 11000;                       % Metamorphic Wing Takeoff Weight (MWTOW)
-rho = 0.0012;                        % slug/ft^3 (Using Atmospheric Model at Crusie Altitude)
-S = 225;                             % ft^2
-V = 418;                             % ft/s
+MTOW = 8600;                   % Maximum Takeoff Weight (MTOW)
+MWTOW = 10000;                 % Metamorphic Wing Takeoff Weight (MWTOW)
+S = 225;                       % Surface Area ft^2
+V = 418;                       % Crusie Speed ft/s
+Vmax = 446;                 % Maximum Speed Approximation (25% greater than Cruise Speed)
+nP = 0.8;                      % Propeller Effeciency cruising at max speed
+P_SL = 495000;                 % Maximum Power at Sea Level (ft*lb /s)
+
+% Atmosphere Model Data
+rhoSL = 2.376*10^(-3);         % Density at Sea Level (slug/ft^3)
+rho = 0.0012;                  % Density at Cruise (slug/ft^3)
+sigma = (rho / rhoSL);         % Relative Air Density
 
 % Drag Polar Parameters
-C_D_o_23018 = 0.0314;                 % Parasatic Drag for NACA 23018
-C_D_o_4418 = 0.0293;                  % Parasatic Drag for NACA 4418
-e = 0.8;                             % Oswald Efficiency
-b = 44;                              % Span 
-c = 5;                               % Chord
-AR = b/c;                            % Aspect Ratio
-k = 1 / (pi*AR*e);                   % Drag Polar Factor
+CD_Correction = 0.0210;                 % Full Plane Model Drag Contribution Approximation
+C_D_o_23018 = 0.007 + CD_Correction;    % Parasatic Drag for NACA 23018
+C_D_o_4418 = 0.006 + CD_Correction;     % Parasatic Drag for NACA 4418
+e = 0.8;                                % Oswald Efficiency
+b = 44;                                 % Span
+c = 5;                                  % Chord
+AR = b/c;                               % Aspect Ratio
+k = 1 / (pi*AR*e);                      % Drag Polar Factor
+
+% Parasitic Drag Approximation for a Turbo Propeller
+CD_o = ((2 * P_SL * nP) / (Vmax) - (4 * k * MTOW^2) / (rho * sigma * Vmax^2 * S)) / (rhoSL * sigma * Vmax^2 * S);
 
 % Effeciency Calculation for Plot Dataset
 W = 1:1:50000;                         % Weight List
@@ -31,7 +42,7 @@ C_D_4418 = C_D_o_4418 + k * C_L.^2;    % Coefficient of Drag for NACA 4418
 E_23018 = C_L ./ C_D_23018;            % Effeciency for NACA 23018
 E_4418 = C_L ./ C_D_4418;              % Effeciency for NACA 4418
 [maxE_23018,index23018] = max(E_23018);      % Max Effeciency for NACA 23018
-[maxE_4418,index4418] = max(E_4418);        % Max Effeciency for NACA 23018
+[maxE_4418,index4418] = max(E_4418);         % Max Effeciency for NACA 23018
 
 % Effeciency Calculation for MTOW and MWTOW Points on Plot
 C_L_MTOW = (2 * MTOW) / (rho * V^2 * S); 
