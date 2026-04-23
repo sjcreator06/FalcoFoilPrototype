@@ -2,7 +2,7 @@
 
 %_______________Weight Optimization______________%
 
-% Find optimal weight to optimize induced drag and aerodynamic effeciency. 
+% Weight and Thrust Optimization for a Metamorphic Wing
 
 %              © 2026 Falco Foil
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
