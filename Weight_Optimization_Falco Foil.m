@@ -12,7 +12,7 @@ MTOW = 8600;                   % Maximum Takeoff Weight (MTOW)
 MWTOW = 10000;                 % Metamorphic Wing Takeoff Weight (MWTOW)
 S = 225;                       % Surface Area ft^2
 V = 418;                       % Crusie Speed ft/s
-Vmax = 446;                 % Maximum Speed Approximation (25% greater than Cruise Speed)
+Vmax = 446;                    % Maximum Speed Approximation (25% greater than Cruise Speed)
 nP = 0.8;                      % Propeller Effeciency cruising at max speed
 P_SL = 495000;                 % Maximum Power at Sea Level (ft*lb /s)
 
