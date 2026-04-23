@@ -35,12 +35,12 @@ k = 1 / (pi*AR*e);                      % Drag Polar Factor
 CD_o = ((2 * P_SL * nP) / (Vmax) - (4 * k * MTOW^2) / (rho * sigma * Vmax^2 * S)) / (rhoSL * sigma * Vmax^2 * S);
 
 % Effeciency Calculation for Plot Dataset
-W = 1:1:50000;                         % Weight List
-C_L = (2 .* W) / (rho * V^2 * S);      % Coefficient of Lift
-C_D_23018 = C_D_o_23018 + k * C_L.^2;  % Coefficient of Drag for NACA 23018
-C_D_4418 = C_D_o_4418 + k * C_L.^2;    % Coefficient of Drag for NACA 4418
-E_23018 = C_L ./ C_D_23018;            % Effeciency for NACA 23018
-E_4418 = C_L ./ C_D_4418;              % Effeciency for NACA 4418
+W = 1:1:50000;                               % Weight List
+C_L = (2 .* W) / (rho * V^2 * S);            % Coefficient of Lift
+C_D_23018 = C_D_o_23018 + k * C_L.^2;        % Coefficient of Drag for NACA 23018
+C_D_4418 = C_D_o_4418 + k * C_L.^2;          % Coefficient of Drag for NACA 4418
+E_23018 = C_L ./ C_D_23018;                  % Effeciency for NACA 23018
+E_4418 = C_L ./ C_D_4418;                    % Effeciency for NACA 4418
 [maxE_23018,index23018] = max(E_23018);      % Max Effeciency for NACA 23018
 [maxE_4418,index4418] = max(E_4418);         % Max Effeciency for NACA 23018
 
