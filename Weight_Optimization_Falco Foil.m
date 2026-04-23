@@ -10,11 +10,11 @@
 % Wing Parameters
 MTOW = 8600;                   % Maximum Takeoff Weight (MTOW)
 MWTOW = 10000;                 % Metamorphic Wing Takeoff Weight (MWTOW)
-S = 225;                       % Surface Area ft^2
-V = 418;                       % Crusie Speed ft/s
-Vmax = 446;                    % Maximum Speed Approximation (25% greater than Cruise Speed)
+S = 225;                       % Surface Area (ft^2)
+V = 418;                       % Crusie Speed (ft/s)
+Vmax = 446;                    % Maximum Speed (ft/s)  
 nP = 0.8;                      % Propeller Effeciency cruising at max speed
-P_SL = 495000;                 % Maximum Power at Sea Level (ft*lb /s)
+P_SL = 495000;                 % Maximum Power at Sea Level (ft*lb/s)
 
 % Atmosphere Model Data
 rhoSL = 2.376*10^(-3);         % Density at Sea Level (slug/ft^3)
@@ -22,7 +22,7 @@ rho = 0.0012;                  % Density at Cruise (slug/ft^3)
 sigma = (rho / rhoSL);         % Relative Air Density
 
 % Drag Polar Parameters
-CD_Correction = 0.0210;                 % Full Plane Model Drag Contribution Approximation
+CD_Correction = 0.018;                  % Full Plane Model Drag Contribution Approximation
 C_D_o_23018 = 0.007 + CD_Correction;    % Parasatic Drag for NACA 23018
 C_D_o_4418 = 0.006 + CD_Correction;     % Parasatic Drag for NACA 4418
 e = 0.8;                                % Oswald Efficiency
