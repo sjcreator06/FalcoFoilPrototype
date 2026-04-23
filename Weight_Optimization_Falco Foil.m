@@ -57,6 +57,10 @@ E_MWTOW_23018 = C_L_MWTOW / C_D_MWTOW_23018;
 C_D_MWTOW_4418= C_D_o_4418 + k * C_L_MWTOW^2;  
 E_MWTOW_4418 = C_L_MWTOW / C_D_MWTOW_4418;
 
+% Steady Flight Thrust Requirement using the Drag Polar
+T_23018 = C_D_o_23018 .* 0.5 * rho * V^2 * S + ((2 * k * S) / (rho * V^2)) .* (W ./ S).^2;
+T_4418 = C_D_o_4418 .* 0.5 * rho * V^2 * S + ((2 * k * S) / (rho * V^2)) .* (W ./ S).^2; 
+
 % Coefficient of Lift Plot
 t = tiledlayout(2, 3);
 set(gcf, 'Color', [1 1 1])
@@ -98,10 +102,7 @@ ax3.YAxis(1).Color = 'k';
 legend("23018 CD Curve","4418 CD Curve","23018 MTOW","23018 MWTOW", ...
     "4418 MTOW","4418 MWTOW")
 
-% Steady Flight Thrust Requirement using the Drag Polar
-T_23018 = C_D_o_23018 .* 0.5 * rho * V^2 * S + ((2 * k * S) / (rho * V^2)) .* (W ./ S).^2;
-T_4418 = C_D_o_4418 .* 0.5 * rho * V^2 * S + ((2 * k * S) / (rho * V^2)) .* (W ./ S).^2; 
-
+% Thrust Plot
 nexttile
 plot(W,T_23018, LineWidth=2.0)
 
