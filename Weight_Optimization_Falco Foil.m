@@ -31,7 +31,7 @@ c = 5;                                  % Chord
 AR = b/c;                               % Aspect Ratio
 k = 1 / (pi*AR*e);                      % Drag Polar Factor
 
-% Parasitic Drag Approximation for a Turbo Propeller
+% Parasitic Drag Approximation for a Turbo Propeller Verification
 CD_o = ((2 * P_SL * nP) / (Vmax) - (4 * k * MTOW^2) / (rho * sigma * Vmax^2 * S)) / (rhoSL * sigma * Vmax^2 * S);
 
 % Effeciency Calculation for Plot Dataset
