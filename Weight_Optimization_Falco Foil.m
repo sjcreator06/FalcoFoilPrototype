@@ -72,8 +72,8 @@ xlabel("Weight (lbs)",'Color','k')
 ylabel("Coefficient of Lift",'Color','k')
         
 hold on
-plot(MTOW,C_L_MTOW, "X", 'MarkerSize', 20, LineWidth=2.0)
-plot(MWTOW,C_L_MWTOW,"X",'MarkerSize', 20, LineWidth=2.0)
+plot(MTOW,C_L_MTOW, "*", 'MarkerSize', 20, LineWidth=2.0)
+plot(MWTOW,C_L_MWTOW,"*",'MarkerSize', 20, LineWidth=2.0)
 
 ax1 = gca; 
 ax1.XAxis(1).Color = 'k'; 
@@ -90,11 +90,11 @@ ylabel("Coefficient of Drag",'Color','k')
 hold on
 plot(W,C_D_4418,LineWidth=2.0)
 
-plot(MTOW,C_D_MTOW_23018, "X", 'MarkerSize', 20, LineWidth=2.0)
-plot(MWTOW,C_D_MWTOW_23018,"X",'MarkerSize', 20, LineWidth=2.0)
+plot(MTOW,C_D_MTOW_23018, "*", 'MarkerSize', 20, LineWidth=2.0)
+plot(MWTOW,C_D_MWTOW_23018,"O",'MarkerSize', 20, LineWidth=2.0)
 
-plot(MTOW,C_D_MTOW_4418, "X", 'MarkerSize', 20, LineWidth=2.0)
-plot(MWTOW,C_D_MWTOW_4418,"X",'MarkerSize', 20, LineWidth=2.0)
+plot(MTOW,C_D_MTOW_4418, "O", 'MarkerSize', 20, LineWidth=2.0)
+plot(MWTOW,C_D_MWTOW_4418,"*",'MarkerSize', 20, LineWidth=2.0)
 
 ax2 = gca; 
 ax2.XAxis(1).Color = 'k'; 
@@ -109,10 +109,10 @@ plot(W,T_23018, LineWidth=2.0)
 hold on
 plot(W,T_4418, LineWidth=2.0)
 
-plot(MTOW,T_23018(MTOW), "X", 'MarkerSize', 20, LineWidth=2.0)
-plot(MWTOW,T_23018(MWTOW), "X", 'MarkerSize', 20, LineWidth=2.0)
-plot(MTOW,T_4418(MTOW), "X", 'MarkerSize', 20, LineWidth=2.0)
-plot(MWTOW,T_4418(MWTOW), "X", 'MarkerSize', 20, LineWidth=2.0)
+plot(MTOW,T_23018(MTOW), "*", 'MarkerSize', 20, LineWidth=2.0)
+plot(MWTOW,T_23018(MWTOW), "O", 'MarkerSize', 20, LineWidth=2.0)
+plot(MTOW,T_4418(MTOW), "O", 'MarkerSize', 20, LineWidth=2.0)
+plot(MWTOW,T_4418(MWTOW), "*", 'MarkerSize', 20, LineWidth=2.0)
 
 ax3 = gca; 
 ax3.XAxis(1).Color = 'k'; 
@@ -134,12 +134,12 @@ ylabel("Efficiency",'Color','k')
 hold on
 plot(W,E_4418,LineWidth=2.0)
 
-plot(MTOW,E_MTOW_23018, "X", 'MarkerSize', 20, LineWidth=2.0)
-plot(MWTOW,E_MWTOW_23018,"X",'MarkerSize', 20, LineWidth=2.0)
+plot(MTOW,E_MTOW_23018, "O", 'MarkerSize', 20, LineWidth=2.0)
+plot(MWTOW,E_MWTOW_23018,"*",'MarkerSize', 20, LineWidth=2.0)
 plot(W(index23018),maxE_23018,"X",'MarkerSize', 20, LineWidth=2.0)
 
-plot(MTOW,E_MTOW_4418, "X", 'MarkerSize', 20, LineWidth=2.0)
-plot(MWTOW,E_MWTOW_4418,"X",'MarkerSize', 20, LineWidth=2.0)
+plot(MTOW,E_MTOW_4418, "*", 'MarkerSize', 20, LineWidth=2.0)
+plot(MWTOW,E_MWTOW_4418,"O",'MarkerSize', 20, LineWidth=2.0)
 plot(W(index4418),maxE_4418,"X",'MarkerSize', 20, LineWidth=2.0)
 
 ax4 = gca; 
